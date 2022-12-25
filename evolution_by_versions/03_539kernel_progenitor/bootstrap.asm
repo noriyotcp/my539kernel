@@ -31,9 +31,9 @@ load_kernel_from_disk:
 
 	jc kernel_load_error
 
-	sub byte [numbers_of_sectors_to_load], 1
+	sub byte [number_of_sectors_to_load], 1
 	add byte [curr_sector_to_load], 1
-	cmp byte [numbers_of_sectors_to_load], 0
+	cmp byte [number_of_sectors_to_load], 0
 
 	jne load_kernel_from_disk
 
