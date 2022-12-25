@@ -25,6 +25,17 @@ enter_protected_mode:
 
 	ret
 
+init_video_mode:
+	mov ah, 0h
+	mov al, 03h
+	int 10h
+
+	mov ah, 01h
+	mov cx, 2000h
+	int 10h
+
+	ret
+
 setup_interrupts:
 	ret
 
