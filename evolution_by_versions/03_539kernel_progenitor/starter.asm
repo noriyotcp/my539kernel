@@ -12,7 +12,19 @@ start:
 
 	call 08h:start_kernel
 
-setup_interrupts:
+load_gdt:
+	cli
+	lgdt [gdtr - starter]
+
 	ret
 
+enter_protected_mode:
+	mov eax, cr0
+	or eax, 1
+	mov cr0, eax
+
+	ret
+
+setup_interrupts:
+	ret
 
