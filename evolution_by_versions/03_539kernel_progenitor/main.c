@@ -8,12 +8,12 @@ void println();
 void printi(int);
 
 void kernel_main() {
-  for (int currPixelPos = 0; currPixelPos < 320 * 200; currPixelPos++) {
-    video[currPixelPos] = 9;
-
-    while (1)
-      ;
-  }
+  print("Welcome to 539kernel!");
+  println();
+  print("We are now in Protected-mode");
+  println();
+  printi(539);
+  println();
 
   while (1)
     ;
