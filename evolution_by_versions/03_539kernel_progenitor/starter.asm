@@ -39,3 +39,19 @@ init_video_mode:
 setup_interrupts:
 	ret
 
+bits 32
+start_kernel:
+	mov eax, 10h
+	mov ds, eax
+	mov ss, eax
+
+	mov eax, 0h
+	mov es, eax
+	mov fs, eax
+	mov gs, eax
+
+	sti
+
+	call kernel_main
+
+%include "gdt.asm"
