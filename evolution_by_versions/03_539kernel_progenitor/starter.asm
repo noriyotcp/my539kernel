@@ -14,7 +14,7 @@ start:
 
 load_gdt:
 	cli
-	lgdt [gdtr - starter]
+	lgdt [gdtr - start]
 
 	ret
 
