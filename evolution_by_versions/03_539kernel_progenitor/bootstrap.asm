@@ -83,5 +83,3 @@ curr_sector_to_load		db	2d
 times 510-($-$$) db 0
 
 dw 0xAA55
-
-
