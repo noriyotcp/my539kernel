@@ -51,3 +51,9 @@ void printi(int number) {
     printi(remaining);
   }
 }
+
+void interrupt_handler(int interrupt_number) {
+  println();
+  print("Interrupt Received");
+  printi(interrupt_number);
+}

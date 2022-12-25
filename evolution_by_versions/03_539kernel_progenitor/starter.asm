@@ -1,5 +1,6 @@
 bits 16
 extern kernel_main
+extern interrupt_handler
 
 start:
 	mov ax, cs
@@ -57,7 +58,7 @@ remap_pic:
 
 	make_irq_starts_from_intr_40_in_pic_slave:
 		mov al, 40d
-		out 0xal, al
+		out 0xa1, al
 
 	tell_pic_master_where_pic_slave_is_connected:
 		mov al, 04h
@@ -65,7 +66,7 @@ remap_pic:
 
 	tell_pic_slave_where_pic_master_is_connected:
 		mov al, 02h
-		out 0xal, al
+		out 0xa1, al
 
 	mov al, 01h
 
@@ -73,7 +74,7 @@ remap_pic:
 		out 0x21, al
 
 	tell_pic_slave_the_arch_is_x86:
-		out 0xal, al
+		out 0xa1, al
 
 	mov al, 0h
 
@@ -81,8 +82,12 @@ remap_pic:
 		out 0x21, al
 
 	make_pic_slave_enables_all_irqs:
-		out 0xal, al
+		out 0xa1, al
 
+	ret
+
+load_idt:
+	lidt [idtr - start]
 	ret
 
 bits 32
@@ -101,3 +106,4 @@ start_kernel:
 	call kernel_main
 
 %include "gdt.asm"
+%include "idt.asm"
