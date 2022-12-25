@@ -8,7 +8,13 @@ void println();
 void printi(int);
 
 void kernel_main() {
-  video[0] = 'A';
+  for (int currPixelPos = 0; currPixelPos < 320 * 200; currPixelPos++) {
+    video[currPixelPos] = 9;
+
+    while (1)
+      ;
+  }
+
   while (1)
     ;
 }
