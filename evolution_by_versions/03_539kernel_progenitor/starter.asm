@@ -37,6 +37,9 @@ init_video_mode:
 	ret
 
 setup_interrupts:
+	call remap_pic
+	call load_idt
+
 	ret
 
 bits 32
