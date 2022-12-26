@@ -10,3 +10,5 @@ typedef struct process {
     process_context_t context;
     int *base_address;
 } process_t;
+
+process_t *processes[15];
