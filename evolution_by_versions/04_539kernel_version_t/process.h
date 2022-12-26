@@ -12,3 +12,8 @@ typedef struct process {
 } process_t;
 
 process_t *processes[15];
+
+int process_count, curr_pid;
+
+void process_init();
+void process_create(int *, process_t *);

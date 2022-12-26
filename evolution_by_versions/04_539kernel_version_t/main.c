@@ -1,7 +1,9 @@
 #include "screen.h"
+#include "process.h"
 
 void kernel_main() {
     screen_init();
+    process_init();
     print("Welcome to 539kernel!");
     println();
     print("We are now in Protected-mode");
