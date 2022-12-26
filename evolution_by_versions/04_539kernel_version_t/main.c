@@ -1,13 +1,7 @@
-volatile unsigned char *video = 0xB8000;
-
-int nextTextPos = 0;
-int currLine = 0;
-
-void print(char *);
-void println();
-void printi(int);
+#include "screen.h"
 
 void kernel_main() {
+  screen_init();
   print("Welcome to 539kernel!");
   println();
   print("We are now in Protected-mode");
