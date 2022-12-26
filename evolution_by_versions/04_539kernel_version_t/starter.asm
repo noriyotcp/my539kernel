@@ -10,6 +10,7 @@ start:
 	call init_video_mode
 	call enter_protected_mode
 	call setup_interrupts
+	call load_task_register
 
 	call 08h:start_kernel
 
@@ -90,6 +91,12 @@ load_idt:
 	lidt [idtr - start]
 	ret
 
+load_task_register:
+	mov ax, 40d
+	ltr ax
+
+	ret
+
 bits 32
 start_kernel:
 	mov eax, 10h
@@ -107,3 +114,6 @@ start_kernel:
 
 %include "gdt.asm"
 %include "idt.asm"
+
+tss:
+	dd 0
