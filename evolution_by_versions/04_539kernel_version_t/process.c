@@ -9,9 +9,9 @@ void process_create(int *base_address, process_t *process) {
     process->pid = curr_pid;
 
     process->context.eax = 0;
-    process->context.ebx = 0;
     process->context.ecx = 0;
     process->context.edx = 0;
+    process->context.ebx = 0;
     process->context.esp = 0;
     process->context.ebp = 0;
     process->context.esi = 0;
