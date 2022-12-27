@@ -159,9 +159,36 @@ isr_31:
 	jmp isr_basic
 
 isr_32:
+	; Part 1
+
+	; Step 1: When we are handling an interrupt, it is better to not receive any other interrupt
 	cli
-	push 32
-	jmp isr_basic
+
+	; Step 2: pushe the current values of all general purpose registers into the stack
+	pusha
+
+	; Step 3: to obtain the value of process A's return address, we can do that simply by reading the value in esp + 32
+	; we first read this value and then push it into the stack so the function scheduler can receive it as the first parameter
+	mov eax, [esp + 32]
+	push eax
+
+	call scheduler ; Step 4
+
+	; Part 2
+
+	; Step 5: after the function scheduler returns, we need to tell PIC that we finished the handling of an IRQ by sending end of interrupt command to the PIC
+	mov al, 0x20
+	out 0x20, al
+
+	; Step 6: The final thing to do after choosing the next process and performing the context switching is to give a CPU time for the code of the next process
+	; First we remove all values that we have pushed on the stack while running isr_32, this is performed by just adding 40 to the current value of ESP
+	; the total size of pushed items in isr_32 is 32 + 4 = 36
+	; 36 + 4 = 40 bytes should be removed from the stack to ensure that we remove all pushed values with the return address or process
+	add esp, 40d
+	; the code of the function run_next_process will be called which enables the interrupts again and jumps to the resume point of the next process
+	push run_next_process
+
+	iret ; Step 7
 
 isr_33:
 	cli
