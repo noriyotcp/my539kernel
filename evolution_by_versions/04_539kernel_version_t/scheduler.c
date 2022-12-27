@@ -8,7 +8,7 @@ void scheduler_init() {
 process_t *get_next_process() {
     process_t *next_process = processes[next_sch_pid];
 
-    curr_pid = next_sch_pid;
+    curr_sch_pid = next_sch_pid;
     next_sch_pid++;
     next_sch_pid = next_sch_pid % process_count;
 
