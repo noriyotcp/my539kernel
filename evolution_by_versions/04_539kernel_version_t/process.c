@@ -6,7 +6,7 @@ void process_init() {
 }
 
 void process_create(int *base_address, process_t *process) {
-    process->pid = curr_pid;
+    process->pid = curr_pid++;
 
     process->context.eax = 0;
     process->context.ecx = 0;
