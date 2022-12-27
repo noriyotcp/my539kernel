@@ -35,7 +35,7 @@ void interrupt_handler(int interrupt_number) {
 }
 
 void processA() {
-    print("Process A,");
+    print(" Process A,");
 
     while (1) {
         asm("mov $5390, %eax");
@@ -43,7 +43,7 @@ void processA() {
 }
 
 void processB() {
-    print("Process B,");
+    print(" Process B,");
 
     while (1) {
         asm("mov $5391, %eax");
@@ -51,7 +51,7 @@ void processB() {
 }
 
 void processC() {
-    print("Process C,");
+    print(" Process C,");
 
     while (1) {
         asm("mov $5392, %eax");
@@ -59,7 +59,7 @@ void processC() {
 }
 
 void processD() {
-    print("Process D,");
+    print(" Process D,");
 
     while (1) {
         asm("mov $5393, %eax");

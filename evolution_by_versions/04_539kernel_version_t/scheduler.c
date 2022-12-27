@@ -19,7 +19,7 @@ void scheduler(int eip, int edi, int esi, int ebp, int esp, int ebx, int edx,
                int ecx, int eax) {
     process_t *curr_process;
 
-    print("Scheduler called EAX = ");   // For Testing Purpose
+    print(" EAX = ");   // For Testing Purpose
     printi(eax);                        // For Testing Purpose
 
     // Save the current process's context
