@@ -1,9 +1,10 @@
 #include "screen.h"
-#include "process.h"
+#include "scheduler.h"
 
 void kernel_main() {
     screen_init();
     process_init();
+    scheduler_init();
     print("Welcome to 539kernel!");
     println();
     print("We are now in Protected-mode");
