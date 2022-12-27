@@ -18,6 +18,10 @@ process_t *get_next_process() {
 void scheduler(int eip, int edi, int esi, int ebp, int esp, int ebx, int edx,
                int ecx, int eax) {
     process_t *curr_process;
+
+    print("Scheduler called EAX = ");   // For Testing Purpose
+    printi(eax);                        // For Testing Purpose
+
     // Save the current process's context
     curr_process = processes[curr_sch_pid];
     next_process = get_next_process();
