@@ -1,3 +1,4 @@
+#include "heap.h"
 #include "paging.h"
 
 int create_page_entry(int base_address, char present, char writable, char privilege_level, char chache_enabled, char write_through_cache, char accessed, char page_size, char dirty) {
