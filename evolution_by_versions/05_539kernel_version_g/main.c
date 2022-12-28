@@ -1,5 +1,6 @@
 #include "screen.h"
 #include "scheduler.h"
+#include "heap.h"
 
 void processA();
 void processB();
@@ -9,9 +10,11 @@ void processD();
 void kernel_main() {
     process_t p1, p2, p3, p4;
 
+    heap_init();
     screen_init();
     process_init();
     scheduler_init();
+
     print("Welcome to 539kernel!");
     println();
     print("We are now in Protected-mode");
