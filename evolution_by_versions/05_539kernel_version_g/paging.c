@@ -1,5 +1,5 @@
-#include "heap.h"
 #include "paging.h"
+#include "heap.h"
 
 int create_page_entry(int base_address, char present, char writable, char privilege_level, char chache_enabled, char write_through_cache, char accessed, char page_size, char dirty) {
     int entry = 0;
@@ -29,7 +29,6 @@ void paging_init() {
         }
         page_directory[currPDE] = create_page_entry(curr_page_frame * 4096, 1, 0, 0, 1, 1, 0, 0, 0);
     }
-
 
     load_page_directory();
     enable_paging();

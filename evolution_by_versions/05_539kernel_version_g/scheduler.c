@@ -19,8 +19,8 @@ void scheduler(int eip, int edi, int esi, int ebp, int esp, int ebx, int edx,
                int ecx, int eax) {
     process_t *curr_process;
 
-    print(" EAX = ");   // For Testing Purpose
-    printi(eax);                        // For Testing Purpose
+    print(" EAX = ");  // For Testing Purpose
+    printi(eax);       // For Testing Purpose
 
     // Save the current process's context
     curr_process = processes[curr_sch_pid];
@@ -55,5 +55,7 @@ void scheduler(int eip, int edi, int esi, int ebp, int esp, int ebx, int edx,
 
 void run_next_process() {
     asm("sti; \
-         jmp *%0;" : : "r"(next_process->context.eip));
+         jmp *%0;"
+        :
+        : "r"(next_process->context.eip));
 }

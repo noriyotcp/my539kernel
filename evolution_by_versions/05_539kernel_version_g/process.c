@@ -1,5 +1,5 @@
-#include "heap.h"
 #include "process.h"
+#include "heap.h"
 
 void process_init() {
     process_count = 0;

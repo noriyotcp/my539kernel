@@ -1,7 +1,7 @@
 #include "heap.h"
+#include "paging.h"
 #include "scheduler.h"
 #include "screen.h"
-#include "paging.h"
 
 void processA();
 void processB();
