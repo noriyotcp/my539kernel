@@ -10,7 +10,8 @@ UseTab: Never
 # if (x) doStuff()  is not allowed, bad style
 AllowShortIfStatementsOnASingleLine: false
 AlignTrailingComments: true
-SpacesBeforeTrailingComments: 3
+ColumnLimit: 0
+SpacesBeforeTrailingComments: 2
 # change the next line to All for Alistair's textbook style
 # AlwaysBreakAfterReturnType: TopLevelDefinitions
 #  #define SHORT_NAME       42
