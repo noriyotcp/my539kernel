@@ -22,3 +22,5 @@ metadata_t *load_metadata(int);
 int get_address_by_filename(char *);
 int get_prev_file_address(int);
 int get_files_number();
+
+void update_base_block(int, int);
