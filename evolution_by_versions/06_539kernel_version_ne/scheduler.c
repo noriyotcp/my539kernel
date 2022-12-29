@@ -1,4 +1,5 @@
 #include "scheduler.h"
+#include "screen.h"
 
 void scheduler_init() {
     next_sch_pid = 0;

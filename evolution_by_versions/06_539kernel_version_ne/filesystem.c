@@ -158,7 +158,8 @@ int get_files_number() {
         return 0;
     }
 
-    int files_number = 1;
+    int files_number = 0;
+
     metadata_t *curr_file = load_metadata(base_block->head);
 
     while (1) {

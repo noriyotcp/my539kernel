@@ -12,7 +12,7 @@ typedef struct {
 
 base_block_t *base_block;
 
-void filesytem_init();
+void filesystem_init();
 void create_file(char *, char *);
 char **list_files();
 char *read_file(char *);

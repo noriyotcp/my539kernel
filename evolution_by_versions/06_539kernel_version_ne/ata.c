@@ -68,7 +68,7 @@ void write_disk_chs(int sector, short *buffer) {
     wait_drive_until_ready();
 }
 
-void write_disk(int address, short *buffer) {
+void write_disk(int address, char *buffer) {
     dev_write(BASE_PORT + 6, 0x0e0 | (0x0e0 | ((address & 0x0F000000) >> 24)));
     dev_write(BASE_PORT + 2, 1);
     dev_write(BASE_PORT + 3, address & 0x000000FF);
