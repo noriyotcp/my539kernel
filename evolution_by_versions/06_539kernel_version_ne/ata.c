@@ -1,10 +1,6 @@
 #include "ata.h"
 #include "heap.h"
 
-extern char dev_read(int port);
-extern void dev_write(int port, int cmd);
-extern void dev_write_word(int port, short cmd);
-
 void wait_drive_until_ready() {
     int status = 0;
 
