@@ -1,5 +1,5 @@
-#include "ata.h"
 #include "filesystem.h"
+#include "ata.h"
 #include "heap.h"
 
 void filesystem_init() {
@@ -35,7 +35,6 @@ void create_file(char *filename, char *buffer) {
         write_disk(base_block->tail, tail_metadata);
         update_base_block(base_block->head, metadata_lba);
     }
-
 }
 
 void update_base_block(int new_head, int new_tail) {
