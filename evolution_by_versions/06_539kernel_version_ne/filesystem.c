@@ -1,6 +1,7 @@
 #include "ata.h"
 #include "filesystem.h"
 #include "heap.h"
+#include "str.h"
 
 void filesystem_init() {
     base_block = read_disk(BASE_BLOCK_ADDRESS);
@@ -49,6 +50,25 @@ metadata_t *load_metadata(int address) {
     return metadata;
 }
 
+int get_address_by_filename(char *filename) {
+    metadata_t *curr_file = load_metadata(base_block->head);
+    int curr_file_address = base_block->head;
+
+    while (1) {
+        if (strcmp(curr_file->filename, filename) == 1) {
+            return curr_file_address;
+        }
+        if (curr_file->next_file_address == 0) {
+            break;
+        }
+
+        curr_file_address = curr_file->next_file_address;
+        curr_file = load_metadata(curr_file->next_file_address);
+    }
+
+    return 0;
+}
+
 char **list_files() {
     if (base_block->head == 0) {
         return -1;
@@ -72,6 +92,18 @@ char **list_files() {
     }
 
     return list;
+}
+
+char *read_file(char *filename) {
+    int address = get_address_by_filename(filename);
+
+    if (address == 0) {
+        return 0;
+    }
+
+    char *buffer = read_disk(address + 1);
+
+    return buffer;
 }
 
 int get_files_number() {
