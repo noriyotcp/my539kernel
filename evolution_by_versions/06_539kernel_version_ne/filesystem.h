@@ -16,6 +16,7 @@ void filesytem_init();
 void create_file(char *, char *);
 char **list_files();
 char *read_file(char *);
+void delete_file(char *);
 
 // Auxiliary Functions
 metadata_t *load_metadata(int);

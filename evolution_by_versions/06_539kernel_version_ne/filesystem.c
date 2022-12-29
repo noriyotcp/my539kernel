@@ -69,6 +69,22 @@ int get_address_by_filename(char *filename) {
     return 0;
 }
 
+int get_prev_file_address(int address) {
+    metadata_t *prev_file = load_metadata(base_block->head);
+    int prev_file_address = base_block->head;
+
+    while (1) {
+        if (prev_file->next_file_address == address) {
+            return prev_file_address;
+        }
+
+        prev_file_address = prev_file->next_file_address;
+        prev_file = load_metadata(prev_file->next_file_address);
+    }
+
+    return -1;
+}
+
 char **list_files() {
     if (base_block->head == 0) {
         return -1;
@@ -104,6 +120,37 @@ char *read_file(char *filename) {
     char *buffer = read_disk(address + 1);
 
     return buffer;
+}
+
+void delete_file(char *filename) {
+    int curr_file_address = get_address_by_filename(filename);
+
+    if (curr_file_address == 0) {
+        return;
+    }
+
+    metadata_t *curr_file_metadata = read_disk(curr_file_address);
+
+    if (get_files_number() == 1) {
+        update_base_block(0, 0);
+        return;
+    }
+
+    if (curr_file_address == base_block->head) {
+        update_base_block(curr_file_metadata->next_file_address, base_block->tail);
+    } else {
+        int prev_file_address = get_prev_file_address(curr_file_address);
+
+        metadata_t *prev_file = load_metadata(prev_file_address);
+
+        prev_file->next_file_address = curr_file_metadata->next_file_address;
+
+        write_disk(prev_file_address, prev_file);
+
+        if (curr_file_address == base_block->tail) {
+            update_base_block(base_block->head, prev_file_address);
+        }
+    }
 }
 
 int get_files_number() {
