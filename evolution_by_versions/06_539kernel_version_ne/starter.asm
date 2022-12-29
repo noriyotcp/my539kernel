@@ -7,6 +7,9 @@ extern page_directory
 
 global load_page_directory
 global enable_paging
+global dev_write
+global dev_write_word
+global dev_read
 
 start:
 	mov ax, cs
@@ -117,6 +120,54 @@ load_page_directory:
 enable_paging:
 	mov eax, cr0
 	or eax, 80000000h
+
+	ret
+
+dev_write:
+	push edx
+	push eax
+
+	xor edx, edx
+	xor eax, eax
+
+	mov dx, [esp + 12]
+	mov al, [esp + 16]
+
+	out dx, al
+
+	pop eax
+	pop edx
+
+	ret
+
+dev_write_word:
+	push edx
+	push eax
+
+	xor edx, edx
+	xor eax, eax
+
+	mov dx, [esp + 12]
+	mov ax, [esp + 16]
+
+	out dx, ax
+
+	pop eax
+	pop edx
+
+	ret
+
+dev_read:
+	push edx
+
+	xor edx, edx
+	xor eax, eax
+
+	mov dx, [esp + 8]
+
+	in ax, dx
+
+	pop edx
 
 	ret
 
