@@ -29,7 +29,7 @@ void *read_disk_chs(int sector) {
 }
 
 void *read_disk(int address) {
-    dev_write(BASE_PORT + 6, 0x0e0 | ((address & 0x0F000000) >> 24));
+    dev_write(BASE_PORT + 6, (0x0e0 | ((address & 0x0F000000) >> 24)));
     dev_write(BASE_PORT + 2, 1);
     dev_write(BASE_PORT + 3, address & 0x000000FF);
     dev_write(BASE_PORT + 4, (address & 0x0000FF00) >> 8);
@@ -65,7 +65,7 @@ void write_disk_chs(int sector, short *buffer) {
 }
 
 void write_disk(int address, short *buffer) {
-    dev_write(BASE_PORT + 6, 0x0e0 | (0x0e0 | ((address & 0x0F000000) >> 24)));
+    dev_write(BASE_PORT + 6, (0x0e0 | ((address & 0x0F000000) >> 24)));
     dev_write(BASE_PORT + 2, 1);
     dev_write(BASE_PORT + 3, address & 0x000000FF);
     dev_write(BASE_PORT + 4, (address & 0x0000FF00) >> 8);
