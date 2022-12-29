@@ -16,7 +16,9 @@ build: $(BOOTSTRAP_FILE) $(KERNEL_FILE)
 	$(CC) $(KERNEL_FLAGS) heap.c -o heap.elf
 	$(CC) $(KERNEL_FLAGS) paging.c -o paging.elf
 	$(CC) $(KERNEL_FLAGS) ata.c -o ata.elf
-	ld -melf_i386 -Tlinker.ld starter.o kernel.elf screen.elf process.elf scheduler.elf heap.elf paging.elf ata.elf -o 539kernel.elf
+	$(CC) $(KERNEL_FLAGS) str.c -o str.elf
+	$(CC) $(KERNEL_FLAGS) filesystem.c -o filesystem.elf
+	ld -melf_i386 -Tlinker.ld starter.o kernel.elf screen.elf process.elf scheduler.elf heap.elf paging.elf ata.elf str.elf filesystem.elf -o 539kernel.elf
 	objcopy -O binary 539kernel.elf 539kernel.bin
 	dd if=bootstrap.o of=kernel.img
 	dd seek=1 conv=sync if=539kernel.bin of=kernel.img bs=512 count=8
