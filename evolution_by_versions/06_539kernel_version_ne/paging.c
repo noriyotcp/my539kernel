@@ -27,7 +27,7 @@ void paging_init() {
         for (int currPTE = 0; currPTE < PTE_NUM; currPTE++, curr_page_frame++) {
             pagetable[currPTE] = create_page_entry(curr_page_frame * 4096, 1, 0, 0, 1, 1, 0, 0, 0);
         }
-        page_directory[currPDE] = create_page_entry(curr_page_frame * 4096, 1, 0, 0, 1, 1, 0, 0, 0);
+        page_directory[currPDE] = create_page_entry(pagetable, 1, 0, 0, 1, 1, 0, 0, 0);
     }
 
     load_page_directory();
