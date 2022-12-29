@@ -1,5 +1,5 @@
-#include "filesystem.h"
 #include "ata.h"
+#include "filesystem.h"
 #include "heap.h"
 
 void filesystem_init() {
@@ -47,4 +47,50 @@ void update_base_block(int new_head, int new_tail) {
 metadata_t *load_metadata(int address) {
     metadata_t *metadata = read_disk(address);
     return metadata;
+}
+
+char **list_files() {
+    if (base_block->head == 0) {
+        return -1;
+    }
+
+    char **list;
+    list = kalloc(get_files_number() * sizeof(char *));
+
+    metadata_t *curr_file = load_metadata(base_block->head);
+    int idx = 0;
+
+    while (1) {
+        list[idx] = curr_file->filename;
+
+        if (curr_file->next_file_address == 0) {
+            break;
+        }
+
+        curr_file = load_metadata(curr_file->next_file_address);
+        idx++;
+    }
+
+    return list;
+}
+
+int get_files_number() {
+    if (base_block->head == 0) {
+        return 0;
+    }
+
+    int files_number = 1;
+    metadata_t *curr_file = load_metadata(base_block->head);
+
+    while (1) {
+        files_number++;
+
+        if (curr_file->next_file_address == 0) {
+            break;
+        }
+
+        curr_file = load_metadata(curr_file->next_file_address);
+    }
+
+    return files_number;
 }
