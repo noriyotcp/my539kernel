@@ -48,9 +48,14 @@ void kernel_main() {
     print(read_file("second_file")); println();
     print(read_file("third_file")); println();
 
+    printi(get_files_number()); println();
+
     print_fs();
     delete_file("first_file");
     print_fs();
+
+    printi(get_files_number());
+    println();
 
     while (1)
         ;
