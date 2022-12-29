@@ -2,7 +2,7 @@
 #include "heap.h"
 
 void process_init() {
-    process_count = 0;
+    processes_count = 0;
     curr_pid = 0;
 }
 
@@ -26,7 +26,7 @@ process_t *process_create(int *base_address) {
 
     processes[process->pid] = process;
 
-    process_count++;
+    processes_count++;
 
     return process;
 }

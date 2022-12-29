@@ -13,7 +13,7 @@ typedef struct process {
 
 process_t *processes[15];
 
-int process_count, curr_pid;
+int processes_count, curr_pid;
 
 void process_init();
 process_t *process_create(int *base_address);

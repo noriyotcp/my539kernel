@@ -11,7 +11,7 @@ process_t *get_next_process() {
 
     curr_sch_pid = next_sch_pid;
     next_sch_pid++;
-    next_sch_pid = next_sch_pid % process_count;
+    next_sch_pid = next_sch_pid % processes_count;
 
     return next_process;
 }
